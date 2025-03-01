@@ -94,16 +94,16 @@ def show_df_as_result_table():
         use_container_width=True
     )       
     if type(execute_inputs[0]) == str or int(execute_inputs[0]) < 15:
-      df.index = df.index.map(lambda x: "https://in.tradingview.com/chart?symbol=NSE%3A" + x)
-      df.index = df.index.map(lambda x: f'<a href="{x}" target="_blank">{x.split("%3A")[-1]}</a>')
+      df.index = df.index.map(lambda x: "https://in.tradingview.com/chart?symbol=" + x)
+      df.index = df.index.map(lambda x: f'<a href="{x}" target="_blank">{x.split("symbol=")[-1]}</a>')
     elif execute_inputs[0] == '16':
       try:
         fetcher = Fetcher.tools(configManager=ConfigManager.tools())
         url_dict_reversed = {key.replace('^','').replace('.NS',''): value for key, value in fetcher.getAllNiftyIndices().items()}
         url_dict_reversed = {v: k for k, v in url_dict_reversed.items()}
-        df.index = df.index.map(lambda x: "https://in.tradingview.com/chart?symbol=NSE%3A" + url_dict_reversed[x])
+        df.index = df.index.map(lambda x: "https://in.tradingview.com/chart?symbol=" + url_dict_reversed[x])
         url_dict_reversed = {v: k for k, v in url_dict_reversed.items()}
-        df.index = df.index.map(lambda x: f'<a href="{x}" target="_blank">{url_dict_reversed[x.split("%3A")[-1]]}</a>')
+        df.index = df.index.map(lambda x: f'<a href="{x}" target="_blank">{url_dict_reversed[x.split("symbol=")[-1]]}</a>')
       except KeyError:
          pass
     else:
