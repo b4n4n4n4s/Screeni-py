@@ -177,7 +177,7 @@ class tools:
             listStockCodes = stockCode.split(',')
         else:
             print(colorText.BOLD +
-                  "[+] Getting Stock Codes From NSE... ", end='')
+                  "[+] Getting Stock Codes From NASDAQ... ", end='')
             listStockCodes = self.fetchCodes(tickerOption,proxyServer=proxyServer)
             if type(listStockCodes) == dict:
                 listStockCodes = list(listStockCodes.keys())
@@ -200,7 +200,7 @@ class tools:
 
             else:
                 input(
-                    colorText.FAIL + "=> Error getting stock codes from NSE! Press any key to exit!" + colorText.END)
+                    colorText.FAIL + "=> Error getting stock codes from NASDAQ! Press any key to exit!" + colorText.END)
                 sys.exit("Exiting script..")
 
         return listStockCodes
