@@ -209,11 +209,11 @@ class tools:
     def fetchStockData(self, stockCode, period, duration, proxyServer, screenResultsCounter, screenCounter, totalSymbols, backtestDate=None, printCounter=False, tickerOption=None):
         dateDict = None
         with SuppressOutput(suppress_stdout=True, suppress_stderr=True):
-            append_exchange = "NASDAQ:"
+            append_exchange = ""
             if tickerOption == 15 or tickerOption == 16:
                 append_exchange = ""
             data = yf.download(
-                tickers=append_exchange + stockCode,
+                tickers=stockCode + append_exchange,
                 period=period,
                 interval=duration,
                 proxy=proxyServer,
