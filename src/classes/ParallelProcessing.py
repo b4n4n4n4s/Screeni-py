@@ -132,7 +132,7 @@ class StockConsumer(multiprocessing.Process):
                 stock = stock.replace('^','').replace('.NS','')
                 urlStock = stock.replace('&','_') if urlStock is None else urlStock.replace('&','_')
                 screeningDictionary['Stock'] = colorText.BOLD + \
-                    colorText.BLUE + f'\x1B]8;;https://in.tradingview.com/chart?symbol=NSE%3A{urlStock}\x1B\\{stock}\x1B]8;;\x1B\\' + colorText.END if tickerOption < 15 \
+                    colorText.BLUE + f'\x1B]8;;https://in.tradingview.com/chart?symbol={urlStock}\x1B\\{stock}\x1B]8;;\x1B\\' + colorText.END if tickerOption < 15 \
                     else colorText.BOLD + \
                     colorText.BLUE + f'\x1B]8;;https://in.tradingview.com/chart?symbol={urlStock}\x1B\\{stock}\x1B]8;;\x1B\\' + colorText.END
                 saveDictionary['Stock'] = stock
