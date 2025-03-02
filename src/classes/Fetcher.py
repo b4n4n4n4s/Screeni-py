@@ -125,7 +125,7 @@ class tools:
             url = "https://raw.githubusercontent.com/datasets/nasdaq-listings/master/data/nasdaq-listed.csv"
             return list(pd.read_csv(url)['Symbol'].values)
         if tickerOption == 15:
-            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('NASDAQ 100')) if "symbol" in item])
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('NASDAQ 100')) if "symbol" in item]
         if tickerOption == 16:
             pass
         tickerMapping = {
