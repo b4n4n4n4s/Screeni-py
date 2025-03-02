@@ -165,6 +165,11 @@ class tools:
         if tickerOption == 14:
             return [item["symbol"] for item in list(stock_data.get_stocks_by_index('MOEX')) if "symbol" in item]
 
+        if tickerOption == 15:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('OMX Helsinki 15')) if "symbol" in item]
+
+        if tickerOption == 16:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('OMX Stockholm 30')) if "symbol" in item]
 
     # Fetch all stock codes from NSE
     def fetchStockCodes(self, tickerOption, proxyServer=None):
