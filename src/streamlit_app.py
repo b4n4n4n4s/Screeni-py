@@ -371,14 +371,14 @@ with tab_screen:
     '5 > DOW JONES',
     '6 > AEX',
     '7 > BEL 20',
-    '8 > Nifty Smallcap 250',
-    '9 > Nifty Midcap 50',
-    '10 > Nifty Midcap 100',
-    '11 > Nifty Midcap 150',
-    '13 > Newly Listed (IPOs in last 2 Year)',
-    '14 > F&O Stocks Only',
-    '15 > US S&P 500',
-    '16 > Sectoral Indices (NSE)'
+    '8 > DAX',
+    '9 > SDAX',
+    '10 > CAC 40',
+    '11 > SMI',
+    '13 > TECDAX',
+    '14 > MOEX',
+    '15 > OMX Helsinki 15',
+    '16 > OMX Stockholm 30'
   ]
 
   list_criteria = [

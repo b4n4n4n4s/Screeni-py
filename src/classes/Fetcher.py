@@ -132,52 +132,39 @@ class tools:
             return [item["symbol"] for item in list(stock_data.get_stocks_by_index('S&P 500')) if "symbol" in item]      
 
         if tickerOption == 4:
-            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('S&P 100')) if "symbol" in item]      
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('FTSE 100')) if "symbol" in item]      
 
+        if tickerOption == 5:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('DOW JONES')) if "symbol" in item]   
+
+        if tickerOption == 6:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('AEX')) if "symbol" in item] 
+
+        if tickerOption == 7:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('BEL 20')) if "symbol" in item] 
+
+        if tickerOption == 8:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('DAX')) if "symbol" in item] 
+
+        if tickerOption == 9:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('SDAX')) if "symbol" in item] 
+
+        if tickerOption == 10:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('CAC 40')) if "symbol" in item]
+        
+        if tickerOption == 11:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('SMI')) if "symbol" in item]
+        
         if tickerOption == 12:
             url = "https://raw.githubusercontent.com/datasets/nasdaq-listings/master/data/nasdaq-listed.csv"
             return list(pd.read_csv(url)['Symbol'].values)
 
-        if tickerOption == 16:
-            pass
-        tickerMapping = {
-            1: "https://archives.nseindia.com/content/indices/ind_nifty50list.csv",
-            2: "https://archives.nseindia.com/content/indices/ind_niftynext50list.csv",
-            3: "https://archives.nseindia.com/content/indices/ind_nifty100list.csv",
-            4: "https://archives.nseindia.com/content/indices/ind_nifty200list.csv",
-            5: "https://archives.nseindia.com/content/indices/ind_nifty500list.csv",
-            6: "https://archives.nseindia.com/content/indices/ind_niftysmallcap50list.csv",
-            7: "https://archives.nseindia.com/content/indices/ind_niftysmallcap100list.csv",
-            8: "https://archives.nseindia.com/content/indices/ind_niftysmallcap250list.csv",
-            9: "https://archives.nseindia.com/content/indices/ind_niftymidcap50list.csv",
-            10: "https://archives.nseindia.com/content/indices/ind_niftymidcap100list.csv",
-            11: "https://archives.nseindia.com/content/indices/ind_niftymidcap150list.csv",
-            14: "https://api.kite.trade/instruments"
-        }
+        if tickerOption == 13:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('TECDAX')) if "symbol" in item]
+    
+        if tickerOption == 14:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('MOEX')) if "symbol" in item]
 
-        url = tickerMapping.get(tickerOption)
-
-        try:
-            if proxyServer:
-                res = requests.get(url,proxies={'https':proxyServer})
-            else:
-                res = requests.get(url)
-            
-            cr = csv.reader(res.text.strip().split('\n'))
-            
-            if tickerOption == 14:
-                cols = next(cr)
-                df = pd.DataFrame(cr, columns=cols)
-                listStockCodes = list(set(df[df['segment'] == 'NFO-FUT']["name"].to_list()))
-                listStockCodes.sort()
-            else:
-                next(cr)  # skipping first line
-                for row in cr:
-                    listStockCodes.append(row[2])
-        except Exception as error:
-            print(error)
-
-        return listStockCodes
 
     # Fetch all stock codes from NSE
     def fetchStockCodes(self, tickerOption, proxyServer=None):
