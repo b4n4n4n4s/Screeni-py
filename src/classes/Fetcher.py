@@ -121,11 +121,23 @@ class tools:
     def fetchCodes(self, tickerOption,proxyServer=None):
         stock_data = PyTickerSymbols()
         listStockCodes = []
+
+        if tickerOption == 1:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('NASDAQ 100')) if "symbol" in item]        
+
+        if tickerOption == 2:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('S&P 100')) if "symbol" in item]                
+        
+        if tickerOption == 3:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('S&P 500')) if "symbol" in item]      
+
+        if tickerOption == 4:
+            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('S&P 100')) if "symbol" in item]      
+
         if tickerOption == 12:
             url = "https://raw.githubusercontent.com/datasets/nasdaq-listings/master/data/nasdaq-listed.csv"
             return list(pd.read_csv(url)['Symbol'].values)
-        if tickerOption == 15:
-            return [item["symbol"] for item in list(stock_data.get_stocks_by_index('NASDAQ 100')) if "symbol" in item]
+
         if tickerOption == 16:
             pass
         tickerMapping = {
